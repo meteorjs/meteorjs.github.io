@@ -5,7 +5,7 @@
 url: http://meteorjs.github.io
 title: My Octopress Blog
 subtitle: A blogging framework for hackers.
-author: Your Name
+author: Meteorjs
 simple_search: http://google.com/search
 description:
 
@@ -98,3 +98,7 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+navigation:
+- text: Home
+  url: /index.html
