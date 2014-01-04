@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Meteor]]></title>
-  <link href="http://meteorjs.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: meteor | Meteor]]></title>
+  <link href="http://meteorjs.github.io/blog/categories/meteor/atom.xml" rel="self"/>
   <link href="http://meteorjs.github.io/"/>
   <updated>2014-01-05T01:09:28+08:00</updated>
   <id>http://meteorjs.github.io/</id>
@@ -94,9 +94,8 @@
 
 <p>下面是2个 <a href="https://github.com/DiscoverMeteor/Microscope">Microscope</a>的模板(列出用户通知）的代码。</p>
 
-<p>注意：如果你想知道， <a href="https://github.com/DiscoverMeteor/Microscope">Microscope</a> 是我们开发的新闻应用程序。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>注意：如果你想知道， <a href="https://github.com/DiscoverMeteor/Microscope">Microscope</a> 是我们开发的新闻应用程序。
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -115,30 +114,41 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;template name="notifications">
-</span><span class='line'>  &lt;ul class="notification">
-</span><span class='line'>    {{#if notificationCount}}
-</span><span class='line'>      {{#each notifications}}
-</span><span class='line'>        {{> notification}}
-</span><span class='line'>      {{/each}}
-</span><span class='line'>    {{else}}
-</span><span class='line'>      &lt;li>&lt;span>No Notifications&lt;/span>&lt;/li>
-</span><span class='line'>    {{/if}}
-</span><span class='line'>  &lt;/ul>
-</span><span class='line'>&lt;/template>
+</span><span class='line'>  &lt;ul class="notification">&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;template name="notification">
-</span><span class='line'>  &lt;li>
-</span><span class='line'>    &lt;a href="{{postPagePath postId}}">
-</span><span class='line'>     &lt;strong>{{commenterName}}&lt;/strong> commented on your post
-</span><span class='line'>    &lt;/a>
-</span><span class='line'>  &lt;/li>
-</span><span class='line'>&lt;/template></span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'>&lt;pre>&lt;code>{{#if notificationCount}}
+</span><span class='line'>  {{#each notifications}}
+</span><span class='line'>    {{&gt; notification}}
+</span><span class='line'>  {{/each}}
+</span><span class='line'>{{else}}
+</span><span class='line'>  &lt;li&gt;&lt;span&gt;No Notifications&lt;/span&gt;&lt;/li&gt;
+</span><span class='line'>{{/if}}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  &lt;/ul>
+</span><span class='line'>&lt;/template>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;template name="notification">
+</span><span class='line'>  &lt;li>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>&lt;a href="{{postPagePath postId}}"&gt;
+</span><span class='line'> &lt;strong&gt;{{commenterName}}&lt;/strong&gt; commented on your post
+</span><span class='line'>&lt;/a&gt;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  &lt;/li>
+</span><span class='line'>&lt;/template></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>而这里是这些模块对应的Javascript代码：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -152,21 +162,36 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Template.notifications.helpers({
-</span><span class='line'>    notifications: function() {
-</span><span class='line'>     return Notifications.find({userId: Meteor.userId(), read: false});
-</span><span class='line'>    },
-</span><span class='line'>    notificationCount: function(){
-</span><span class='line'>     return Notifications.find({userId: Meteor.userId(), read: false}).count();
-</span><span class='line'>    }
-</span><span class='line'>  });
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Template.notifications.helpers({&lt;/p>
 </span><span class='line'>
-</span><span class='line'>  Template.notification.events({
-</span><span class='line'>    'click a': function() {
-</span><span class='line'>      Notifications.update(this._id, {$set: {read: true}});
-</span><span class='line'>    }
-</span><span class='line'>  })</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'>&lt;pre>&lt;code>notifications: function() {
+</span><span class='line'> return Notifications.find({userId: Meteor.userId(), read: false});
+</span><span class='line'>},
+</span><span class='line'>notificationCount: function(){
+</span><span class='line'> return Notifications.find({userId: Meteor.userId(), read: false}).count();
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  });&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  Template.notification.events({&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>'click a': function() {
+</span><span class='line'>  Notifications.update(this._id, {$set: {read: true}});
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  })&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>我敢打赌，你已经知道这段代码的含义了</p>
 
