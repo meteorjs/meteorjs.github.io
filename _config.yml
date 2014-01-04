@@ -99,6 +99,13 @@ google_analytics_tracking_id: UA-46828346-1
 # Facebook Like
 facebook_like: false
 
+# weibo
+weibo_user: zhaoyou2009
+
 navigation:
 - text: Home
   url: /index.html
+- text: Archives
+  url: /blog/archives/
+- text: About
+  url: /about/
