@@ -7,9 +7,9 @@ sharing: true
 footer: true
 ---
 
-## You Zhao ##
+## Hadeser ##
 
-`` Node.js ``  ``Java`` ``Scala`` ``Linux`` ``Git`` ``Vim``
+`` Node.js ``  ``Java`` ``Scala`` ``Linux`` ``Git`` ``Vim`` ``Bitcoiner``
 
 Tags
 ===
