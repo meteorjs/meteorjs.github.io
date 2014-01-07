@@ -4,98 +4,143 @@
   <title><![CDATA[Category: meteor | Meteor]]></title>
   <link href="http://meteorjs.github.io/blog/categories/meteor/atom.xml" rel="self"/>
   <link href="http://meteorjs.github.io/"/>
-  <updated>2014-01-05T01:13:39+08:00</updated>
+  <updated>2014-01-08T00:19:10+08:00</updated>
   <id>http://meteorjs.github.io/</id>
   <author>
-    <name><![CDATA[Meteor]]></name>
+    <name><![CDATA[Hadeser]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
+    <title type="html"><![CDATA[开始我的Meteor开发]]></title>
+    <link href="http://meteorjs.github.io/blog/2014/01/08/getstart-meteor/"/>
+    <updated>2014-01-08T00:00:04+08:00</updated>
+    <id>http://meteorjs.github.io/blog/2014/01/08/getstart-meteor</id>
+    <content type="html"><![CDATA[<p>我之前就对Javascript就比较敢兴趣，面试我现在这家公司时，说是用Node.js 开发， 我就义无反顾的过来了。 哈哈。。。</p>
+
+<p>我们这边是用的基于Node.js 的一个框架 <a href="http://meteor.com">Meteor</a>, 用了4个多月了, 现在把我用的这些心得写下来, 这是第一篇。</p>
+
+<h3><em>开始</em></h3>
+
+<p>它支持不同的<a href="https://github.com/meteor/meteor/wiki/Supported-Platforms">平台</a></p>
+
+<ul>
+<li>安装Meteor</li>
+</ul>
+
+
+<p><code>$ curl https://install.meteor.com | /bin/sh</code></p>
+
+<ul>
+<li>新建应用</li>
+</ul>
+
+
+<p><code>$ meteor create myapp</code></p>
+
+<ul>
+<li>本地运行</li>
+</ul>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd myapp
+</span><span class='line'>$ meteor
+</span><span class='line'>  => Meteor server running on: &lt;a href="http://localhost:3000/">http://localhost:3000/&lt;/a></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<ul>
+<li>部署到网络（免费提供服务器)</li>
+</ul>
+
+
+<p><code>$ meteor deploy myapp.meteor.com</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[meteor-frontend-engineers]]></title>
     <link href="http://meteorjs.github.io/blog/2014/01/04/meteor-frontend-engineers/"/>
     <updated>2014-01-04T22:23:00+08:00</updated>
     <id>http://meteorjs.github.io/blog/2014/01/04/meteor-frontend-engineers</id>
-    <content type="html"><![CDATA[<p>作为我的日常网页开发工作的一部分，我订阅了一些前端的博客。我总是惊讶有那么多优秀的前端工程师对JavaScript和CSS深入了解，以及他们如何能够掌握现代Web浏览器的复杂性。 然而，我也不能不注意到，很多前端开发人员似乎限制了自己，好了，前端。</p>
+    <content type="html"><![CDATA[<p>英文 <a href="http://davidwalsh.name/meteor-frontend-engineers">http://davidwalsh.name/meteor-frontend-engineers</a></p>
 
-<h3>从前端到后端</h3>
+<p>作为我的日常网页开发工作的一部分，我订阅了一些前端的博客。我总是惊讶优秀的前端工程师对JavaScript和CSS有那么深入了解，以及他们如何能够掌握错综复杂的浏览器。 然而，我也注意到很多前端开发人员似乎限制了自己，没错，前端。</p>
 
-<p>一方面，这是有意义的。 随着新的JavaScript框架和浏览器快速迭代每天如雨后春笋般冒出来，客户端开发已经提供了足够让你啃一辈子了</p>
+<h3><strong>前后</strong></h3>
 
-<p>然而，事实是，它往往很难建立一个Web网络应用不涉及后端操作，只是用数据库进行通信。</p>
+<p>一方面这是有意义的。 随着新的JavaScript框架的出现以及浏览器每天快速迭代的周期，客户端开发已经提供了足够多的干货让你啃一辈子了.</p>
 
-<p>就目前而言，你的应用程序涉及到了后端操作意味着你必须学习一种后端语言如Ruby，Python或PHP。 而新的环境来与它自己的一套模式和规范，你不得不从头开始学。</p>
+<p>然而事实上，很难建立一个与数据库打交道而不涉及后端操作的Web应用。</p>
 
-<p>但事情正在发生变化。 随着Node.js作为Javascript在服务器上的的出现，开发人员可以使用一种统一的语言编写他们的整个应用程序。</p>
+<p>就目前而言，涉及到了后端操作意味着你必须学习一种后端语言如Ruby，Python或PHP。而新的语言都有它自己的一套模式和规范，你不得不从头开始学习.</p>
 
-<p>但是，今天我想谈谈还不是第三种方法：Meteor ，作为客户端和服务器之间的桥梁并逐渐崭露头角的JavaScript框架。</p>
+<p>但情况正在发生变化。 随着Node.js作为Javascript在服务器上的的出现，开发人员可以使用一种的语言编写他们的整个应用程序。</p>
 
-<p>我大约一年前接触到了Meteor，并迅速喜欢上了它。 我去用它建了一个流行的开放源码应用程序，它使我的应用程序成为了一个非常成功的项目 ，并最终写一本书吧！</p>
+<p>于此同时，像<a href="https://parse.com/">Parse</a> 和 <a href="https://www.firebase.com/">Firebase</a> 这种后端服务提供商的出现，使得仅仅添加几行Javascript代码就可以应用具有持久化功能成为可能。</p>
 
-<p>Meteor 可能仍然是比较年轻的，但我觉得很多前端工程师和设计师应该会很快爱上Meteor的.如果有机会用一用得话。</p>
+<p>但是今天我说得是第三种方法：<a href="http://meteor.com">Meteor</a>  一个在客户端和服务器之间建立纽带并逐渐崭露头角的JavaScript框架。</p>
 
-<p>所以这里有一个简单的介绍给那些正在生活和呼吸的在浏览器世界以及还在服务器端挣扎的JavaScript 工程师们 !</p>
+<p>我大约一年前接触到了Meteor，并迅速喜欢上了它。 我去用它建了一个流行的开放源码应用程序，并成为了一个非常成功的项目 ，并最终促使我写了<a href="http://www.discovermeteor.com/">一本书</a>！</p>
 
-<h3>Meteor ?</h3>
+<p>Meteor 可能现在仍然比较年轻，但我认为会有很多前端工程师和设计师会很快爱上它的， 如果有机会试试的话。</p>
 
-<p>让我们从基础开始：Meteor 是一种基于Node.js的一个JavaScript框架 不像大多数其他的JS框架，Meteor 在服务器和客户端上同时运行，这意味着你可以用一个单一的代码库管理您的整个应用程序，并且这两个部分可以无缝地互相工作。</p>
+<p>所以这个简单的介绍送给那些正生活在浏览器世界以及还在服务器端使用JavaScript 工程师们 !</p>
 
-<p>Meteor 的另一个亮点在于它的reactive和实时性 ，这意味着服务器上的任何数据更改将会立即反映在客户端上，而无需您任何额外的工作。</p>
+<h3><strong>Meteor ?</strong></h3>
 
-<p>在实践中，这意味着您可以构建单页面的JavaScript 程序，因为大多数的服务器 &ndash; 客户端的通信帮你做好了。</p>
+<p>让我们从基础开始：Meteor 是一种基于Node.js的一个JavaScript框架 不像大多数其他的JS框架，Meteor是在服务器和客户端同时运行，这意味着你可以用一个统一的代码库管理您的整个应用程序，并且这两个部分可以无缝地工作。</p>
 
-<h3>你已经知道它的大部分</h3>
+<p>Meteor 的另一个亮点在于它的 <code>reactive</code> 和 <code>real-time</code> ，这意味着服务器上的任何数据更改将会立即反映在客户端上，而无需您任何额外的工作。</p>
+
+<p>在实践中，这意味着您可以构建单页面的JavaScript应用，因为大多数的服务器-客户端的通信工作帮你做好了。</p>
+
+<h3><strong>你已经知道它的大部分</strong></h3>
 
 <p>为什么我认为Meteor是一场伟大的比赛对于前端工程师而言,原因是，典型的JS编译器将已经熟悉的Meteor 应用程序的代码，都是Javascript，即使他们以前从未看过Meteor的官方文档。</p>
 
-<p>当然，Meteor使用JavaScript这种无处不在的语言的事实是一个很大的帮助：不同于使用Rails或者Django，你将不必学习新的编程语言。</p>
+<p>当然，Meteor使用JavaScript这种无处不在的语言的事实是一个很大的帮助：不同于使用Rails或者Django，你将不必学习新的编程语言。
+更重要的是，Meteor 也包含一些你已经熟悉了（jQuery，underscore.js，Handlebars）的第三方类库，他们甚至都默认包含到了每一个新建的Meteor 应用（即使这样你也可以方便的替换这些使用你熟悉的）。</p>
 
-<p>更重要的是，Meteor 也包含一些你已经熟悉了（jQuery，underscore.js，Handlebars）的第三方类库，他们甚至都默认包含到了每一个新的Meteor 程序（尽管如此你也可以方便的使用你熟悉的替换这些）。</p>
+<p>你不必重新学习这个新的模式，利用现有的Javascript知识， 你就可以很好的开始了。</p>
 
-<p>你不必重新学习这个新的模式，利用现有的Javascript知识， 你就可以很好的使用了。</p>
+<h3><strong>简单设置</strong></h3>
 
-<h3>简单设置</h3>
-
-<p>其中一个很大的障碍，跨越客户端/服务器的鸿沟是需要建立一个本地开发环境。</p>
-
-<p>毕竟，你真正需要处理的客户端代码是一个网页浏览器，也许Apache的本地实例，如果你真的想要这样。</p>
-
-<p>在另一方面，建立最完整开发境需要安装新的语言，框架，模块和可能的版本管理也是如此。</p>
-
-<p>好消息是，Meteor 捆绑所有的东西在一个单一的命令超级容易安装。 只需键入：</p>
+<p>不像其他的开发环境， 需要安装新的语言， 模块， 框架，以及自身的版本控制。
+Meteor 已经把这些东西都做好了，只需要下面这个命令可以了。只要输入：</p>
 
 <p><code>   curl https://install.meteor.com | /bin/sh</code></p>
 
 <p>你可以打开一个终端窗口，你可以安装Meteor。</p>
 
-<h3><strong>集合和反应性</strong></h3>
+<h3><strong>Collections 和 Reactivity</strong></h3>
 
-<p>所以，如果你已经熟悉JavaScript和安装是如此简单， 你有什么真正需要学习建立一个Meteor 的应用程序？</p>
+<p>所以，如果你对JavaScript比较熟悉了以及安装也是如此简单， 那有什么真正需要学习的来建立一个Meteor 的应用程序？</p>
 
-<p>对于我来说，这两个关键概念在刚学习Meteor，了解<code>Collections</code>和 <code>Reactivity</code>。</p>
+<p>对于我来说，刚学习Meteor时两个重要的概念，了解<code>Collections</code>和 <code>Reactivity</code>。</p>
 
-<p>Collections 是MongoDB的集合等同与SQL表，即存放类似的数据的一个集合。 Meteor暴露了一个强大的API来发布和订阅这些Collection， 利用这个API可以让你控制哪些数据的子集，可以提供给浏览器。</p>
+<p>Collections 是MongoDB的集合等同于SQL里面的表，即存放相同数据的一个集合。 Meteor暴露了一个强大的API来发布和订阅这些Collection， 利用这个API可以让你控制哪些数据的子集，可以提供给客户端。</p>
 
-<p>出于安全性以及性能方面的原因，你可能不希望把你的整个数据库发布到每一个客户端！ 所以，掌握好集合是第一步骤，以建立强大的流星应用程序。</p>
+<p>出于安全性以及性能方面的原因，你可能不希望把你的整个数据库数据发布到每一个客户端！ 所以，建立强大的Meteor应用程序的第一步是掌握好Collection。</p>
 
-<p>Meteor 另一个关键的概念是Reactivity。 简单地说，任何改变Reactivity的数据源将被立即反映到使用这个数据源的应用程序。</p>
+<p>Meteor 另一个关键的概念是Reactivity。 简单地说，任何改变Reactivity的数据源将被立即反映到使用这个数据源的地方。</p>
 
-<p>这些数据源不仅包括存储在数据库中的数据，而且包括Session变量或路由过滤器。 更重要的是。你也可以自定义任何变量，使其具有Reactivity</p>
+<p>这些数据源不仅包括存储在数据库中的数据，而且包括Session变量或路由过滤器等等（后面文章会介绍）。 更重要的是, 你也可以自定义任何变量，使其具有Reactivity.</p>
 
-<p>Reactivity是非常强大的，感觉比较神奇。 所以有时候在使用时，可能会产生意想不到的影响。</p>
+<p>Reactivity是非常强大的也十分神奇。 所以有时候在使用时，可能会产生意想不到的影响。</p>
 
-<p>所以这是存在一个学习曲线的，但掌握了这些概念之后你会很快自如的使用它，开发应用了。</p>
+<p>所以这是存在一个学习曲线的，但掌握了这些概念之后你会很快自如的使用它来开发应用了。</p>
 
-<h3>一个例子</h3>
+<h3><strong>一个例子</strong></h3>
 
-<p>现在你大概知道Meteor是怎么一回事，让我们一起来看看Meteor一个简单的示例代码。</p>
+<p>现在你大概知道Meteor是怎么一回事，让我们一起来看看Meteor一个简单的示例代码。
+下面是2个 <a href="https://github.com/DiscoverMeteor/Microscope">Microscope</a>的模板(列出用户通知）的代码。
+注意：如果你想知道， <a href="https://github.com/DiscoverMeteor/Microscope">Microscope</a> 是我们开发的新闻应用程序。</p>
 
-<p>下面是2个 <a href="https://github.com/DiscoverMeteor/Microscope">Microscope</a>的模板(列出用户通知）的代码。</p>
-
-<p>注意：如果你想知道， <a href="https://github.com/DiscoverMeteor/Microscope">Microscope</a> 是我们开发的新闻应用程序。
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -193,23 +238,19 @@
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>我敢打赌，你已经知道这段代码的含义了</p>
+<p>我敢打赌，你已经知道这段代码的含义了
+第一个代码示例包含两个<a href="http://handlebarsjs.com/">Handlebars</a>的模板。 第一个遍历所有的用户通知，包括通知的每个具体项。
+然后，JavaScript代码可以简单的返回那个通知列表了。 在这种情况下， <code>return Notifications.find({userId: Meteor.userId(), read: false});</code>仅仅意味着“返回当前用户所有未读的通知”。</p>
 
-<p>第一个代码示例包含两个Handlebars的模板。 第一个遍历所有的用户通知，包括通知的每个具体项。</p>
-
-<p>然后，JavaScript代码可以简单的返回那个通知列表了。 在这种情况下， return Notifications.find({userId: Meteor.userId(), read: false});仅仅意味着“返回当前用户所有未读的通知”。</p>
-
-<p>当然，这一切都是被动的，这意味着你的通知列表会自动只要底层数据有更新！</p>
+<p>当然，这一切都是被动的，这意味着你的通知列表会自动更新只要底层数据有更新！</p>
 
 <p>如果您想了解更多，Meteor <a href="http://www.discovermeteor.com/2013/02/20/a-look-at-a-meteor-template/">模块</a></p>
 
-<h3>为什么不试试看？</h3>
+<h3><strong>为什么不试试看？</strong></h3>
 
-<p>现在，我不想让它听起来像学习Meteor是一个平凡的事业。 这是一个新的框架，引入了许多功能强大的概念，像每一个新的技术，它有一个学习曲线。</p>
-
-<p>但它不是一个巧合是Meteor提供了一个很容易上手的环境。</p>
-
-<p><p>所以，如果你有一两个小时在你前面，我建议你给它一个尝试。 赶快来试试吧！</p>
+<p>现在，我不想让它听起来像学习Meteor是一个平凡的事业。 这是一个新的框架，引入了许多功能强大的概念，像每一个新的技术，它有一个学习曲线。
+但Meteor提供了一个很容易上手的环境。
+所以，如果现在有2，3个小时的时间，我建议你赶快来试试吧！</p>
 ]]></content>
   </entry>
   

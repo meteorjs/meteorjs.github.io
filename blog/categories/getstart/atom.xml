@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: getstart | Meteor]]></title>
+  <link href="http://meteorjs.github.io/blog/categories/getstart/atom.xml" rel="self"/>
+  <link href="http://meteorjs.github.io/"/>
+  <updated>2014-01-08T00:19:10+08:00</updated>
+  <id>http://meteorjs.github.io/</id>
+  <author>
+    <name><![CDATA[Hadeser]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[开始我的Meteor开发]]></title>
+    <link href="http://meteorjs.github.io/blog/2014/01/08/getstart-meteor/"/>
+    <updated>2014-01-08T00:00:04+08:00</updated>
+    <id>http://meteorjs.github.io/blog/2014/01/08/getstart-meteor</id>
+    <content type="html"><![CDATA[<p>我之前就对Javascript就比较敢兴趣，面试我现在这家公司时，说是用Node.js 开发， 我就义无反顾的过来了。 哈哈。。。</p>
+
+<p>我们这边是用的基于Node.js 的一个框架 <a href="http://meteor.com">Meteor</a>, 用了4个多月了, 现在把我用的这些心得写下来, 这是第一篇。</p>
+
+<h3><em>开始</em></h3>
+
+<p>它支持不同的<a href="https://github.com/meteor/meteor/wiki/Supported-Platforms">平台</a></p>
+
+<ul>
+<li>安装Meteor</li>
+</ul>
+
+
+<p><code>$ curl https://install.meteor.com | /bin/sh</code></p>
+
+<ul>
+<li>新建应用</li>
+</ul>
+
+
+<p><code>$ meteor create myapp</code></p>
+
+<ul>
+<li>本地运行</li>
+</ul>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd myapp
+</span><span class='line'>$ meteor
+</span><span class='line'>  => Meteor server running on: &lt;a href="http://localhost:3000/">http://localhost:3000/&lt;/a></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<ul>
+<li>部署到网络（免费提供服务器)</li>
+</ul>
+
+
+<p><code>$ meteor deploy myapp.meteor.com</code></p>
+]]></content>
+  </entry>
+  
+</feed>
