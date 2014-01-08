@@ -7,7 +7,8 @@ title: Meteor
 subtitle: A blogging framework for hackers.
 author: Hadeser
 simple_search: http://google.com/search
-description: 这是一个记录、翻译Meteor的博客
+description: 这是一个关于介绍Meteor的博客.
+keywords: Meteor, Meteorjs, Meteor博客, Meteor中文, Meteor学习, Meteor资料
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
