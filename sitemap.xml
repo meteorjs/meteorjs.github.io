@@ -6,7 +6,13 @@
     </url>
     <url>
         <loc>http://meteorjs.github.io/blog/2014/01/08/getstart-meteor/</loc>
-        <lastmod>2014-01-08T00:19:09+08:00</lastmod>
+        <lastmod>2014-01-08T15:38:50+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://meteorjs.github.io/blog/2014/01/08/understanding-meteor-publications-and-subscriptions/
+        </loc>
+        <lastmod>2014-01-08T23:13:21+08:00</lastmod>
     </url>
     <url>
         <loc>http://meteorjs.github.io/about/</loc>
@@ -14,11 +20,11 @@
     </url>
     <url>
         <loc>http://meteorjs.github.io/blog/archives/</loc>
-        <lastmod>2014-01-08T00:19:09+08:00</lastmod>
+        <lastmod>2014-01-08T23:13:21+08:00</lastmod>
     </url>
     <url>
         <loc>http://meteorjs.github.io/</loc>
-        <lastmod>2014-01-08T00:19:09+08:00</lastmod>
+        <lastmod>2014-01-08T23:13:21+08:00</lastmod>
     </url>
     <url>
         <loc>http://meteorjs.github.io/new-page-name.html</loc>
