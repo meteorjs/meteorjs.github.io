@@ -4,7 +4,7 @@
   <title><![CDATA[Category: pubsub | Meteor]]></title>
   <link href="http://meteorjs.github.io/blog/categories/pubsub/atom.xml" rel="self"/>
   <link href="http://meteorjs.github.io/"/>
-  <updated>2014-01-10T00:12:01+08:00</updated>
+  <updated>2014-03-24T11:48:08+08:00</updated>
   <id>http://meteorjs.github.io/</id>
   <author>
     <name><![CDATA[Hadeser]]></name>
@@ -180,11 +180,10 @@
 
 <p>这就是怎样在客户端扩展你的Meteor程序，并不是订阅所有的数据。而是选择你当前需要的数据。这样我们可以避免因为数据库大量的数据，而造成浏览器占用大量的内存。</p>
 
-<pre><code>  Autopublish
+<blockquote><p><code>Autopublish</code>
   如果你已经玩过Meteor应用程序， 你可能会迷惑，我根本没有设置什么订阅和发布，为啥我的程序正常工作了。
-  默认新建的Meteor程序包含了 ``autopublish`` 模块。发布和订阅了所有的数据，不需要你担心了。
-  如果一旦你打算在生产环境部署应用了， 就应该把它移除掉。
-</code></pre>
+  默认新建的Meteor程序包含了 <code>autopublish</code> 模块。发布和订阅了所有的数据，不需要你担心了。
+  如果一旦你打算在生产环境部署应用了， 就应该把它移除掉。</p></blockquote>
 ]]></content>
   </entry>
   
