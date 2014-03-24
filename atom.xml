@@ -4,7 +4,7 @@
   <title><![CDATA[Meteor]]></title>
   <link href="http://meteorjs.github.io/atom.xml" rel="self"/>
   <link href="http://meteorjs.github.io/"/>
-  <updated>2014-03-24T11:48:08+08:00</updated>
+  <updated>2014-03-24T23:41:13+08:00</updated>
   <id>http://meteorjs.github.io/</id>
   <author>
     <name><![CDATA[Hadeser]]></name>
@@ -12,6 +12,77 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Understanding-Meteor-Internals]]></title>
+    <link href="http://meteorjs.github.io/blog/2014/03/24/understanding-meteor-internals/"/>
+    <updated>2014-03-24T13:47:34+08:00</updated>
+    <id>http://meteorjs.github.io/blog/2014/03/24/understanding-meteor-internals</id>
+    <content type="html"><![CDATA[<h3>Meteor Interanls： Meteor是一个服务器也是一个客户端</h3>
+
+<p>Meteor程序，看上去就像典型的web程序一样,由浏览器，代理服务器，路由，和其他网络组件构成。事实上Meteor由两个主要的部分构成。 一部分运行在服务端,另一部分运行在客户端。 这两部分相互通信的方式就像现代Web程序一样(例如： Gmail，Trello)。</p>
+
+<p><img src="http://meteorjs.github.io/images/posts/internal_1.png" alt="internal" /></p>
+
+<p>Meteor 的这种方式， 使得开发人员无需再担心客户端与服务端之间复杂的通信， 只关注自己的业务逻辑。</p>
+
+<h3>Meteor 处理3种不同类型的请求</h3>
+
+<p>在Meteor内部，Meteor能够处理下面3种类型的请求:</p>
+
+<ul>
+<li>静态文件</li>
+<li>DDP 消息</li>
+<li>HTTP 请求</li>
+</ul>
+
+
+<h4>静态文件</h4>
+
+<p>在项目的的<code>public</code> 目录下得所有图片和其他资源文件都当做静态文件处理。当Meteor服务启动的时候，就能自动处理这些文件了。</p>
+
+<h4>DDP 消息</h4>
+
+<p>Meteor 程序客户端与服务端的通信就基于 DDP 协议的。客户端的所有数据订阅，Method 方法调用，Mongo数据库的操作等等这些都是通过DDP消息实现的，DDP是一个轻量级的协议。 通过这个<code>ddp-analyzer</code>这个工具，就可以看到DDP消息里面具体怎样操作的。</p>
+
+<h4>HTTP请求</h4>
+
+<p>虽然Meteor的官方文档并没有说明， 但是Meteor能够像其他应用程序一样处理Http请求的.例如： 通过Http请求实现文件上传。具体的你可以通过 <a href="http://stackoverflow.com/questions/tagged/meteor">OverflowStack </a>看看怎样手动处理Http请求。</p>
+
+<h3>Meteor 包含两种类型的服务器</h3>
+
+<p>虽然Meteor只运行在一个端口，但内部其实是两个独立的服务器工作的。</p>
+
+<ul>
+<li>HTTP 服务器</li>
+<li>DDP 服务器</li>
+</ul>
+
+
+<p><img src="http://meteorjs.github.io/images/posts/internal_2.png" alt="internal" /></p>
+
+<h3>HTTP 服务器</h3>
+
+<p>HTTP服务器主要用来提供静态文件和HTTP请求，内部是使用Node.js的 <code>connect</code> 模块</p>
+
+<h3>DDP 服务器</h3>
+
+<p>DDP服务器处理所有的数据定义请求，MongoDB操作，Meteor 的Methods. Meteor 使用的是 <a href="https://github.com/sockjs/sockjs-node">SockJs</a>作为传输协议。实际上，Meteor就是基于SockJs定制的。
+后面的文章会详细介绍如何扩展这两种服务器。</p>
+
+<h3>Meteor and MongoDB</h3>
+
+<p>  Meteor 是建立在MongoDB之上的，并且完全依赖与它，至少到目前为止是的， 可能在不远的将来会改变。由于MongoDb并不是一个实时的数据库。但Meteor却是实时的。Meteor使用下面的两种技术是之成为了可能。</p>
+
+<ol>
+<li><p> Polling MongoDB every ~10 secs</p></li>
+<li><p> Using MongoDB oplog</p></li>
+</ol>
+
+
+<p>  轮训的代价是非常大的， 因此Meteor提供另一种配置(Oplog). 但因此需要跟多的配置， 并且在一些MongoDB托管服务中并不可用。后面的章节我会更加详细的讨论这个主题。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Understanding Meteor Publications & Subscriptions]]></title>
