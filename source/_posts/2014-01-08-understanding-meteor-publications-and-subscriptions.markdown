@@ -6,7 +6,7 @@ comments: true
 categories: pubsub
 ---
 
-Meteor 处理应用数据的方式是这个框架最有价值的地方，但同时也是使用它最困难的事情之一，当你在刚开始使用的时候。
+Meteor 处理应用数据的方式是这个框架最有价值的地方，也是使用它最困难的地方之一，尤其在刚开始时候。
 
 因此造成了很多的误解.例如，它的应用是不安全的，也不能处理大数据.
 
@@ -57,8 +57,91 @@ Meteor 最关键的创新在于不像Rails应用程序只在服务端运行。Me
 
 让我们忘记上面书店的比喻，看看下面的图表。
 
-首先下面的数据存储在数据库里。想象下我们正在建立某种形式的论坛，下面的文档就像是用户提交的文章一样。
+首先下面的数据存储在数据库里。想象下我们正在建立某种论坛，下面的文档就像是用户提交的帖子一样。
 ![database](/images/posts/understaning_3.png)
       All the posts contained in our database.
 
-待续...
+### Publishing
+****
+
+有些帖子因为不文明而被特别标注出来，虽然这些仍然存在我们的数据库中，但是我们不应该发送到客户端去。
+
+所以，首先告诉Meteor哪些数据我们需要发送到客户端,那些没有被标注的帖子。
+![database](/images/posts/understaning_4.png)
+      Excluding flagged posts.
+
+下面是对应的代码, 运行在服务端。
+{% codeblock %}
+{% raw %}
+// on the server
+Meteor.publish('posts', function() {
+    return Posts.find({flagged: false});
+});
+{% endraw %}
+{% endcodeblock %}
+
+这将确保客户端不能访问已经标注出来的帖子。
+
+确保我们Meteor应用程序安全，就是确保你发布到客户端数据的访问。
+
+
+#### 更灵活的控制
+
+如果我们希望系统管理员能够查看被标注的帖子
+
+很简单，假定我们定义了一个``isAdmin()``函数来根据用户Id检查是否有权限。像下面这样做：
+{% codeblock %}
+{% raw %}
+// on the server
+Meteor.publish('posts', function() {
+    if(isAdmin(this.userId)){
+        return Posts.find();
+    }else{
+      return Posts.find({flagged: false});
+    }
+});
+{% endraw %}
+{% endcodeblock %}
+
+
+### Subscribing
+***
+
+即使我们想要任何未标识的帖子发送到客户端，但也不能一次把所有的帖子发过去。我们需要一种方式，只发送客户端需要的数据。 这时subscriptions派上用场了。
+
+任何订阅的数据都会在本地客户端存一份镜像, 靠的就是 _MiniMongo_ ,  它是Meteor的Mongo客户端实现。
+
+例如让我们想象下，目前我们正在浏览Smith的个人信息页面，只显示他相关的帖子。
+
+
+![database](/images/posts/understaning_5.png)
+      Subscribing to Smith’s posts will mirror them on the client.
+
+首先我们需要在publication的地方添加一个参数
+{% codeblock %}
+{% raw %}
+// on the server
+Meteor.publish('posts', function(author) {
+    return Posts.find({flagged: false, author: author});
+});
+{% endraw %}
+{% endcodeblock %}
+
+我们在客户端订阅程序代码的地方应该添加一个参数。
+
+{% codeblock %}
+{% raw %}
+// on the client
+Meteor.subscribe('posts', 'bob-smith');
+{% endraw %}
+{% endcodeblock %}
+
+这就是怎样在客户端扩展你的Meteor程序，并不是订阅所有的数据。而是选择你当前需要的数据。这样我们可以避免因为数据库大量的数据，而造成浏览器占用大量的内存。
+
+> ``Autopublish``
+  如果你已经玩过Meteor应用程序， 你可能会迷惑，我根本没有设置什么订阅和发布，为啥我的程序正常工作了。
+  默认新建的Meteor程序包含了 ``autopublish`` 模块。发布和订阅了所有的数据，不需要你担心了。
+  如果一旦你打算在生产环境部署应用了， 就应该把它移除掉。
+
+
+
