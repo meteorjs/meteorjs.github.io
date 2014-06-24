@@ -3,15 +3,14 @@ layout: post
 title: "Getstart Meteor Development"
 date: 2014-01-08 00:00:04 +0800
 comments: true
-categories: getstart meteor
+categories: meteor
 ---
 
-我之前就对Javascript就比较敢兴趣，面试我现在这家公司时，说是用Node.js 开发， 我就义无反顾的过来了。 哈哈。。。
+我之前就对Javascript比较感兴趣，面试我现在这家公司时，说是用Node.js 开发， 我就义无反顾的进来了。
+在这边是用的基于Node.js 的一个框架 [Meteor](http://meteor.com), 用了4个多月了, 现在把我用的这些心得写下来, 同时我也会翻译一些国外优秀的Meteor文章 这是第一篇。
 
-我们这边是用的基于Node.js 的一个框架 [Meteor](http://meteor.com), 用了4个多月了, 现在把我用的这些心得写下来, 这是第一篇。
 
-
-### *开始*
+## 开始
 
 它支持不同的[平台](https://github.com/meteor/meteor/wiki/Supported-Platforms)
 
