@@ -19,16 +19,22 @@
         <lastmod>2014-03-24T23:41:12+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://meteorjs.github.io/blog/2014/06/24/understanding-javascript-function-invocation-and-this/
+        </loc>
+        <lastmod>2014-06-26T00:36:16+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://meteorjs.github.io/about/</loc>
         <lastmod>2014-01-07T23:53:18+08:00</lastmod>
     </url>
     <url>
         <loc>http://meteorjs.github.io/blog/archives/</loc>
-        <lastmod>2014-03-31T23:22:24+08:00</lastmod>
+        <lastmod>2014-06-26T00:36:16+08:00</lastmod>
     </url>
     <url>
         <loc>http://meteorjs.github.io/</loc>
-        <lastmod>2014-03-31T23:22:24+08:00</lastmod>
+        <lastmod>2014-06-26T00:36:16+08:00</lastmod>
     </url>
     <url>
         <loc>http://meteorjs.github.io/new-page-name.html</loc>

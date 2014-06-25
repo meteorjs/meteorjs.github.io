@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Javascript | Meteor]]></title>
+  <link href="http://meteorjs.github.io/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://meteorjs.github.io/"/>
+  <updated>2014-06-26T00:36:17+08:00</updated>
+  <id>http://meteorjs.github.io/</id>
+  <author>
+    <name><![CDATA[Hadeser]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[理解Javascript函数调用和函数内部This引用]]></title>
+    <link href="http://meteorjs.github.io/blog/2014/06/24/understanding-javascript-function-invocation-and-this/"/>
+    <updated>2014-06-24T14:51:07+08:00</updated>
+    <id>http://meteorjs.github.io/blog/2014/06/24/understanding-javascript-function-invocation-and-this</id>
+    <content type="html"><![CDATA[<p>一直以来， 我对Javascript函数调用都很困惑， 不仅仅是函数调用， 很多人都抱怨函数内部的<code>this</code>引用也混乱。</p>
+
+<p>在我看来， 只要是明白了函数的调用的原始本质，就会明白很多， 其实他们方式的函数调用只不过是在其原始调用的基础上增加一些语法糖而已。其实这也是ECMAScript所要描述的那样， 在这篇文章的重点就是讲这些。</p>
+
+<p><strong> 函数调用本质 </strong></p>
+
+<p>首先，我们看看函数调用的本质，就是一个函数调用 <code>call</code> 方法， 调用 <code>call</code> 方法是相对于直接通过括号<code>()</code>调用</p>
+
+<ol>
+<li><p>把第二个参数到最后一个参数当做一个参数列表(argList)。</p></li>
+<li><p>第一个参数就是函数内部This的值(thisValue).</p></li>
+<li><p>调用函数并且把thisValue设置到函数内部this， argList当做函数的参数列表。</p></li>
+</ol>
+
+
+<p>例如：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>function hello(thing) {
+</span><span class='line'>  console.log(this + " says hello " + thing);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>hello.call("Yehuda", "world") //=&gt; Yehuda says hello world
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>在console运行代码，你就会发现this值被设置成了"Yehuda", 参数thing设置成立了"world", 这就是javascript函数原始的调用， 然后你再看看其他的调用方式， 只是在这个的基础上加上语法糖而已。<a href="" title="http://es5.github.com/#x15.3.4.4">the ES5 spec</a></p>
+
+<p><strong> 简单函数调用 </strong></p>
+
+<p>很显然，每次调用函数都通过<code>call</code> 来调用会很烦， javascript允许我们直接使用<code>()</code>语法来调用函数, 当我们这样调用时， 实际上就像应用了下面的方式。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>function hello(thing) {
+</span><span class='line'>    console.log("Hello " + thing);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>// this:
+</span><span class='line'>hello("world")
+</span><span class='line'>
+</span><span class='line'>// desugars to:
+</span><span class='line'>hello.call(window, "world");
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>当上面的代码在ECMAscript5 的严格模式下， 行为会不一样。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>// this:
+</span><span class='line'>hello("world")
+</span><span class='line'>
+</span><span class='line'>// desugars to:
+</span><span class='line'>hello.call(undefined, "world");
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>上面的版本可以这样表示: 一个函数调用 <code>fn(...args)</code> 就像 <code>fn.call(window [ES5-strict: undefined], ...args)</code></p>
+
+<p>注意函数表达式直接调用也是应用同样的道理<code>(function() {})()</code> 和<code>(function() {}).call(window [ES5-strict: undefined)</code>是一样的。</p>
+
+<p><strong> 对象方法函数 </strong></p>
+
+<p>另一种比较常用的函数调用是作为对象方法的方式。<code>(person.hello())</code>, 像下面这种方式:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>var person = {
+</span><span class='line'>  name: "Brendan Eich",
+</span><span class='line'>  hello: function(thing) {
+</span><span class='line'>    console.log(this + " says hello " + thing);
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>// this:
+</span><span class='line'>person.hello("world")
+</span><span class='line'>
+</span><span class='line'>// desugars to this:
+</span><span class='line'>person.hello.call(person, "world");
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>在这个例子中hello是作为person对象的一个方法， 而上一个示例中hello是作为独立的方法。 如果在程序执行过程， 动态指定方法到一个对象里，情况是怎样的呢？
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>function hello(thing) {
+</span><span class='line'>  console.log(this + " says hello " + thing);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>person = { name: "Brendan Eich" }
+</span><span class='line'>person.hello = hello;
+</span><span class='line'>
+</span><span class='line'>person.hello("world") // still desugars to person.hello.call(person, "world")
+</span><span class='line'>
+</span><span class='line'>hello("world") // "[object DOMWindow]world"
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>注意, 函数里面的this的值并不是总固定的，它的值总是依赖于当时函数调用者。</p>
+
+<p><strong> 使用函数原型的 bind 方法 </strong></p>
+
+<p>因为有时我们想函数里面<code>this</code>能保持不变。因此，人们在很久以前就使用闭包的方式来保持函数里面<code>this</code>的值不变。
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>var person = {
+</span><span class='line'>  name: "Brendan Eich",
+</span><span class='line'>  hello: function(thing) {
+</span><span class='line'>    console.log(this.name + " says hello " + thing);
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var boundHello = function(thing) { return person.hello.call(person, thing); }
+</span><span class='line'>
+</span><span class='line'>boundHello("world");
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>尽管<code>boundHello</code>的调用方式转换为 <code>boundHello.call(window, "world")</code>, 但是在方法里面，我们通过闭包引用person，直接调用指定this值， 最终还是达到了我们的效果。</p>
+
+<p>我们还可以优化下上面的代码， 使的更通用。
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>var bind = function(func, thisValue) {
+</span><span class='line'>  return function() {
+</span><span class='line'>    return func.apply(thisValue, arguments);
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var boundHello = bind(person.hello, person);
+</span><span class='line'>boundHello("world") // "Brendan Eich says hello world"
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>为了明白上面的代码， 你需要了解两点： 首先<code>arguments</code>是一个类似数组的对象，但并不是一个真正的数组， 代表代码函数执行时，传递过来的参数列表。 其次是<code>apply</code> 方法其实它和<code>call</code>方法十分的相似，唯一的区别就是，它只接收一个类数组对象的参数并不像<code>call</code>那样一个个参数传递。</p>
+
+<p>这里<code>bind</code> 方法只是简单的返回一个函数。当我们返回的函数被调用时，原始的函数被调用，并且原始的thisValue设置成this值。 arguments 当作参数列表。</p>
+
+<p>由于这个方式普遍应用， ES5实现了这种行为, 并在Function原型上引进了这个<code>bind</code>方法
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>var boundHello = person.hello.bind(person);
+</span><span class='line'>boundHello("world") // "Brendan Eich says hello world"
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>当你需要传递一个函数作为回调函数时，就特别有用。
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>var person = {
+</span><span class='line'>    name: "Alex Russell",
+</span><span class='line'>      hello: function() { console.log(this.name + " says hello world"); }
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   $(&ldquo;#some-div&rdquo;).click(person.hello.bind(person));&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>// when the div is clicked, "Alex Russell says hello world" is printed
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><a href="" title="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/">英文原文</a></p>
+]]></content>
+  </entry>
+  
+</feed>
